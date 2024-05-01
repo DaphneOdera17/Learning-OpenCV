@@ -1,3 +1,0 @@
-/home/birdy/code/build/CMakeFiles/test2.dir
-/home/birdy/code/build/CMakeFiles/edit_cache.dir
-/home/birdy/code/build/CMakeFiles/rebuild_cache.dir
