@@ -9,7 +9,7 @@ using namespace cv;
 int main()
 {
     /* Importing Images */
-    string path = "../kaola.jpg";
+    string path = "../image/kaola.jpg";
     Mat img = imread(path);
     Mat imgCrop;
     
