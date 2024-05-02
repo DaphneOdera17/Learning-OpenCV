@@ -117,41 +117,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Color
+# Target rules for targets named FaceDetection
 
 # Build rule for target.
-Color: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Color
-.PHONY : Color
+FaceDetection: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 FaceDetection
+.PHONY : FaceDetection
 
 # fast build rule for target.
-Color/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Color.dir/build.make CMakeFiles/Color.dir/build
-.PHONY : Color/fast
+FaceDetection/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceDetection.dir/build.make CMakeFiles/FaceDetection.dir/build
+.PHONY : FaceDetection/fast
 
-Color.o: Color.cpp.o
-.PHONY : Color.o
+FaceDetection.o: FaceDetection.cpp.o
+.PHONY : FaceDetection.o
 
 # target to build an object file
-Color.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Color.dir/build.make CMakeFiles/Color.dir/Color.cpp.o
-.PHONY : Color.cpp.o
+FaceDetection.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceDetection.dir/build.make CMakeFiles/FaceDetection.dir/FaceDetection.cpp.o
+.PHONY : FaceDetection.cpp.o
 
-Color.i: Color.cpp.i
-.PHONY : Color.i
+FaceDetection.i: FaceDetection.cpp.i
+.PHONY : FaceDetection.i
 
 # target to preprocess a source file
-Color.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Color.dir/build.make CMakeFiles/Color.dir/Color.cpp.i
-.PHONY : Color.cpp.i
+FaceDetection.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceDetection.dir/build.make CMakeFiles/FaceDetection.dir/FaceDetection.cpp.i
+.PHONY : FaceDetection.cpp.i
 
-Color.s: Color.cpp.s
-.PHONY : Color.s
+FaceDetection.s: FaceDetection.cpp.s
+.PHONY : FaceDetection.s
 
 # target to generate assembly for a file
-Color.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Color.dir/build.make CMakeFiles/Color.dir/Color.cpp.s
-.PHONY : Color.cpp.s
+FaceDetection.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceDetection.dir/build.make CMakeFiles/FaceDetection.dir/FaceDetection.cpp.s
+.PHONY : FaceDetection.cpp.s
 
 # Help Target
 help:
@@ -161,10 +161,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Color"
-	@echo "... Color.o"
-	@echo "... Color.i"
-	@echo "... Color.s"
+	@echo "... FaceDetection"
+	@echo "... FaceDetection.o"
+	@echo "... FaceDetection.i"
+	@echo "... FaceDetection.s"
 .PHONY : help
 
 

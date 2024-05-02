@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /home/birdy/Learning-OpenCV/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/Color.dir/all
+all: CMakeFiles/FaceDetection.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/Color.dir/clean
+clean: CMakeFiles/FaceDetection.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/Color.dir
+# Target rules for target CMakeFiles/FaceDetection.dir
 
 # All Build rule for target.
-CMakeFiles/Color.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Color.dir/build.make CMakeFiles/Color.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Color.dir/build.make CMakeFiles/Color.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/birdy/Learning-OpenCV/build/CMakeFiles --progress-num=1,2 "Built target Color"
-.PHONY : CMakeFiles/Color.dir/all
+CMakeFiles/FaceDetection.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceDetection.dir/build.make CMakeFiles/FaceDetection.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceDetection.dir/build.make CMakeFiles/FaceDetection.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/birdy/Learning-OpenCV/build/CMakeFiles --progress-num=1,2 "Built target FaceDetection"
+.PHONY : CMakeFiles/FaceDetection.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/Color.dir/rule: cmake_check_build_system
+CMakeFiles/FaceDetection.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/birdy/Learning-OpenCV/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Color.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/FaceDetection.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/birdy/Learning-OpenCV/build/CMakeFiles 0
-.PHONY : CMakeFiles/Color.dir/rule
+.PHONY : CMakeFiles/FaceDetection.dir/rule
 
 # Convenience name for target.
-Color: CMakeFiles/Color.dir/rule
-.PHONY : Color
+FaceDetection: CMakeFiles/FaceDetection.dir/rule
+.PHONY : FaceDetection
 
 # clean rule for target.
-CMakeFiles/Color.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Color.dir/build.make CMakeFiles/Color.dir/clean
-.PHONY : CMakeFiles/Color.dir/clean
+CMakeFiles/FaceDetection.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceDetection.dir/build.make CMakeFiles/FaceDetection.dir/clean
+.PHONY : CMakeFiles/FaceDetection.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
