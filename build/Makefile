@@ -117,41 +117,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named FaceDetection
+# Target rules for targets named Project1
 
 # Build rule for target.
-FaceDetection: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 FaceDetection
-.PHONY : FaceDetection
+Project1: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Project1
+.PHONY : Project1
 
 # fast build rule for target.
-FaceDetection/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceDetection.dir/build.make CMakeFiles/FaceDetection.dir/build
-.PHONY : FaceDetection/fast
+Project1/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project1.dir/build.make CMakeFiles/Project1.dir/build
+.PHONY : Project1/fast
 
-FaceDetection.o: FaceDetection.cpp.o
-.PHONY : FaceDetection.o
+Project1.o: Project1.cpp.o
+.PHONY : Project1.o
 
 # target to build an object file
-FaceDetection.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceDetection.dir/build.make CMakeFiles/FaceDetection.dir/FaceDetection.cpp.o
-.PHONY : FaceDetection.cpp.o
+Project1.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project1.dir/build.make CMakeFiles/Project1.dir/Project1.cpp.o
+.PHONY : Project1.cpp.o
 
-FaceDetection.i: FaceDetection.cpp.i
-.PHONY : FaceDetection.i
+Project1.i: Project1.cpp.i
+.PHONY : Project1.i
 
 # target to preprocess a source file
-FaceDetection.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceDetection.dir/build.make CMakeFiles/FaceDetection.dir/FaceDetection.cpp.i
-.PHONY : FaceDetection.cpp.i
+Project1.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project1.dir/build.make CMakeFiles/Project1.dir/Project1.cpp.i
+.PHONY : Project1.cpp.i
 
-FaceDetection.s: FaceDetection.cpp.s
-.PHONY : FaceDetection.s
+Project1.s: Project1.cpp.s
+.PHONY : Project1.s
 
 # target to generate assembly for a file
-FaceDetection.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FaceDetection.dir/build.make CMakeFiles/FaceDetection.dir/FaceDetection.cpp.s
-.PHONY : FaceDetection.cpp.s
+Project1.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project1.dir/build.make CMakeFiles/Project1.dir/Project1.cpp.s
+.PHONY : Project1.cpp.s
 
 # Help Target
 help:
@@ -161,10 +161,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... FaceDetection"
-	@echo "... FaceDetection.o"
-	@echo "... FaceDetection.i"
-	@echo "... FaceDetection.s"
+	@echo "... Project1"
+	@echo "... Project1.o"
+	@echo "... Project1.i"
+	@echo "... Project1.s"
 .PHONY : help
 
 

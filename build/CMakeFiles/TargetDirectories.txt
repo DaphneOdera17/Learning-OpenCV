@@ -1,3 +1,3 @@
-/home/birdy/Learning-OpenCV/build/CMakeFiles/FaceDetection.dir
+/home/birdy/Learning-OpenCV/build/CMakeFiles/Project1.dir
 /home/birdy/Learning-OpenCV/build/CMakeFiles/edit_cache.dir
 /home/birdy/Learning-OpenCV/build/CMakeFiles/rebuild_cache.dir
