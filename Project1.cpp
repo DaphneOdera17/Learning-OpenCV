@@ -39,8 +39,6 @@ Point getContours(Mat imgDil)
 
             approxPolyDP(contours[i], conPoly[i], 0.02 * peri, true);
 
-            drawContours(img, conPoly, i, Scalar(255, 0, 255), 2);
-
             cout << conPoly[i].size() << endl;
 
             boundRect[i] = boundingRect(conPoly[i]);

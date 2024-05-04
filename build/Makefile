@@ -117,41 +117,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Project1
+# Target rules for targets named video
 
 # Build rule for target.
-Project1: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Project1
-.PHONY : Project1
+video: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 video
+.PHONY : video
 
 # fast build rule for target.
-Project1/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project1.dir/build.make CMakeFiles/Project1.dir/build
-.PHONY : Project1/fast
+video/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/video.dir/build.make CMakeFiles/video.dir/build
+.PHONY : video/fast
 
-Project1.o: Project1.cpp.o
-.PHONY : Project1.o
+video.o: video.cpp.o
+.PHONY : video.o
 
 # target to build an object file
-Project1.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project1.dir/build.make CMakeFiles/Project1.dir/Project1.cpp.o
-.PHONY : Project1.cpp.o
+video.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/video.dir/build.make CMakeFiles/video.dir/video.cpp.o
+.PHONY : video.cpp.o
 
-Project1.i: Project1.cpp.i
-.PHONY : Project1.i
+video.i: video.cpp.i
+.PHONY : video.i
 
 # target to preprocess a source file
-Project1.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project1.dir/build.make CMakeFiles/Project1.dir/Project1.cpp.i
-.PHONY : Project1.cpp.i
+video.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/video.dir/build.make CMakeFiles/video.dir/video.cpp.i
+.PHONY : video.cpp.i
 
-Project1.s: Project1.cpp.s
-.PHONY : Project1.s
+video.s: video.cpp.s
+.PHONY : video.s
 
 # target to generate assembly for a file
-Project1.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Project1.dir/build.make CMakeFiles/Project1.dir/Project1.cpp.s
-.PHONY : Project1.cpp.s
+video.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/video.dir/build.make CMakeFiles/video.dir/video.cpp.s
+.PHONY : video.cpp.s
 
 # Help Target
 help:
@@ -161,10 +161,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Project1"
-	@echo "... Project1.o"
-	@echo "... Project1.i"
-	@echo "... Project1.s"
+	@echo "... video"
+	@echo "... video.o"
+	@echo "... video.i"
+	@echo "... video.s"
 .PHONY : help
 
 
