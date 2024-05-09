@@ -3,7 +3,22 @@
 using namespace cv;
 using namespace std;
 
-Mat img;
+Mat img, imgOrigin, imgHSV, imgMask;
+Mat imgGray, imgBlur, imgCanny, imgDil, imgErode; 
+Mat blue_mask, green_mask, red_mask, red_mask_1, red_mask_2, blue_res, green_res, red_res;
+Mat bg, res;
+Mat imgBlue, imgGreen, imgRed;
+
+void preprocessing()
+{
+    cvtColor(img, imgGray, COLOR_BGR2GRAY);
+    cvtColor(img, imgHSV, COLOR_BGR2HSV);
+
+    GaussianBlur(imgGray, imgBlur, Size(3, 3), 3, 0);
+    Canny(imgBlur, imgCanny, 25, 75);
+    Mat kernel = getStructuringElement(MORPH_RECT, Size(3, 3));
+    dilate(imgCanny, imgDil, kernel);
+}
 
 void drawMoments(vector<Point> contours)
 {
@@ -64,15 +79,48 @@ void getContours(Mat imgDil, Mat img)
             else {
                 objectType = "Circle";
             }
-
             putText(img, objectType, {boundRect[i].x, boundRect[i].y - 5}, FONT_HERSHEY_DUPLEX, 0.75, Scalar(0, 69, 255), 2);
         }
     }
 }
 
+void getColor()
+{
+    Scalar lower_blue = Scalar(100, 50, 50);
+    Scalar upper_blue = Scalar(124, 255, 255);
+    
+    Scalar lower_green = Scalar(35, 50, 50);
+    Scalar upper_green = Scalar(77, 255, 255);
+
+    Scalar lower_red_1 = Scalar(0, 50, 50);
+    Scalar upper_red_1 = Scalar(10, 255, 255);
+    Scalar lower_red_2 = Scalar(156, 50, 50);
+    Scalar upper_red_2 = Scalar(180, 255, 255);
+
+    inRange(imgHSV, lower_blue, upper_blue, blue_mask);
+    inRange(imgHSV, lower_green, upper_green, green_mask);
+    inRange(imgHSV, lower_red_1, upper_red_1, red_mask_1);
+    inRange(imgHSV, lower_red_2, upper_red_2, red_mask_2);
+
+    red_mask = red_mask_1 + red_mask_2;
+
+    bitwise_and(imgOrigin, imgOrigin, blue_res, blue_mask);
+    bitwise_and(imgOrigin, imgOrigin, green_res, green_mask);
+    bitwise_and(imgOrigin, imgOrigin, red_res, red_mask);
+
+    bg = Mat::zeros(1000, 1900, CV_8UC3);
+
+    res = blue_res + green_res + red_res;
+
+    imgBlue = blue_res;
+    imgGreen = green_res;
+    imgRed = red_res;
+}
+
 int main()
 {
     string path = "../image/color.jpg";
+    imgOrigin = imread(path, IMREAD_COLOR);
     img = imread(path, IMREAD_COLOR);
 
     vector<Mat> channels;
@@ -82,27 +130,44 @@ int main()
     threshold(channels[0], binaryB, 128, 255, THRESH_BINARY);
     threshold(channels[1], binaryG, 128, 255, THRESH_BINARY);
     threshold(channels[2], binaryR, 128, 255, THRESH_BINARY);
-    
-    Mat subtracted;
-    subtract(binaryR, binaryG, subtracted);
-    Mat result;
-    result = subtracted;
 
-    Mat imgGray, imgBlur, imgCanny, imgDil, imgErode; 
-
-    // Preprocessing
-    cvtColor(img, imgGray, COLOR_BGR2GRAY);
-    GaussianBlur(imgGray, imgBlur, Size(3, 3), 3, 0);
-    Canny(imgBlur, imgCanny, 25, 75);
-    Mat kernel = getStructuringElement(MORPH_RECT, Size(3, 3));
-    dilate(imgCanny, imgDil, kernel);
+    preprocessing();
 
     getContours(imgDil, img);
 
-    // drawMoments();
+    getColor();
 
-    imshow("Img", img);
-    imshow("Binary Image", result);
+    int hmin = 0, smin = 0, vmin = 0;
+    int hmax = 179, smax= 255, vmax = 255;
+    
+    namedWindow("Trackbars", (640, 200));
+    createTrackbar("Hue Min", "Trackbars", &hmin, 179);
+    createTrackbar("Hue Max", "Trackbars", &hmax, 179);
+    createTrackbar("Sat Min", "Trackbars", &smin, 255);
+    createTrackbar("Sat Max", "Trackbars", &smax, 255);
+    createTrackbar("Val Min", "Trackbars", &vmin, 255);
+    createTrackbar("Val Max", "Trackbars", &vmax, 255);
+
+    while(1)
+    {
+        Scalar lower(hmin, smin, vmin);
+        Scalar upper(hmax, smax, vmax);
+        inRange(imgHSV, lower, upper, imgMask);
+
+        imshow("Orginal Image", imgOrigin);
+        imshow("Image HSV", imgHSV);
+        imshow("Image Mask", imgMask);
+        imshow("Image", img);
+        imshow("Red Image", binaryR);
+        imshow("Blue Image", binaryB);
+
+        imshow("res Image", res);
+        imshow("Blue Image", imgBlue);
+        imshow("Green Image", imgGreen);
+        imshow("Red Image", imgRed);
+
+        waitKey(1);
+    }
 
     waitKey(0);
 
