@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /home/birdy/Learning-OpenCV/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/video.dir/all
+all: CMakeFiles/homework1.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/video.dir/clean
+clean: CMakeFiles/homework1.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/video.dir
+# Target rules for target CMakeFiles/homework1.dir
 
 # All Build rule for target.
-CMakeFiles/video.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/video.dir/build.make CMakeFiles/video.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/video.dir/build.make CMakeFiles/video.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/birdy/Learning-OpenCV/build/CMakeFiles --progress-num=1,2 "Built target video"
-.PHONY : CMakeFiles/video.dir/all
+CMakeFiles/homework1.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework1.dir/build.make CMakeFiles/homework1.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework1.dir/build.make CMakeFiles/homework1.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/birdy/Learning-OpenCV/build/CMakeFiles --progress-num=1,2 "Built target homework1"
+.PHONY : CMakeFiles/homework1.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/video.dir/rule: cmake_check_build_system
+CMakeFiles/homework1.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/birdy/Learning-OpenCV/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/video.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/homework1.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/birdy/Learning-OpenCV/build/CMakeFiles 0
-.PHONY : CMakeFiles/video.dir/rule
+.PHONY : CMakeFiles/homework1.dir/rule
 
 # Convenience name for target.
-video: CMakeFiles/video.dir/rule
-.PHONY : video
+homework1: CMakeFiles/homework1.dir/rule
+.PHONY : homework1
 
 # clean rule for target.
-CMakeFiles/video.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/video.dir/build.make CMakeFiles/video.dir/clean
-.PHONY : CMakeFiles/video.dir/clean
+CMakeFiles/homework1.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework1.dir/build.make CMakeFiles/homework1.dir/clean
+.PHONY : CMakeFiles/homework1.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

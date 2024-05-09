@@ -154,7 +154,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=video
+CMAKE_PROJECT_NAME:STATIC=homework1
 
 //Path to a program.
 CMAKE_RANLIB:FILEPATH=/usr/bin/ranlib
@@ -292,6 +292,15 @@ h1_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 h1_SOURCE_DIR:STATIC=/home/birdy/Learning-OpenCV
+
+//Value Computed by CMake
+homework1_BINARY_DIR:STATIC=/home/birdy/Learning-OpenCV/build
+
+//Value Computed by CMake
+homework1_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+homework1_SOURCE_DIR:STATIC=/home/birdy/Learning-OpenCV
 
 //Value Computed by CMake
 saliency_BINARY_DIR:STATIC=/home/birdy/Learning-OpenCV/build

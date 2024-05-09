@@ -117,41 +117,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named video
+# Target rules for targets named homework1
 
 # Build rule for target.
-video: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 video
-.PHONY : video
+homework1: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 homework1
+.PHONY : homework1
 
 # fast build rule for target.
-video/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/video.dir/build.make CMakeFiles/video.dir/build
-.PHONY : video/fast
+homework1/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework1.dir/build.make CMakeFiles/homework1.dir/build
+.PHONY : homework1/fast
 
-video.o: video.cpp.o
-.PHONY : video.o
+homework1.o: homework1.cpp.o
+.PHONY : homework1.o
 
 # target to build an object file
-video.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/video.dir/build.make CMakeFiles/video.dir/video.cpp.o
-.PHONY : video.cpp.o
+homework1.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework1.dir/build.make CMakeFiles/homework1.dir/homework1.cpp.o
+.PHONY : homework1.cpp.o
 
-video.i: video.cpp.i
-.PHONY : video.i
+homework1.i: homework1.cpp.i
+.PHONY : homework1.i
 
 # target to preprocess a source file
-video.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/video.dir/build.make CMakeFiles/video.dir/video.cpp.i
-.PHONY : video.cpp.i
+homework1.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework1.dir/build.make CMakeFiles/homework1.dir/homework1.cpp.i
+.PHONY : homework1.cpp.i
 
-video.s: video.cpp.s
-.PHONY : video.s
+homework1.s: homework1.cpp.s
+.PHONY : homework1.s
 
 # target to generate assembly for a file
-video.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/video.dir/build.make CMakeFiles/video.dir/video.cpp.s
-.PHONY : video.cpp.s
+homework1.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/homework1.dir/build.make CMakeFiles/homework1.dir/homework1.cpp.s
+.PHONY : homework1.cpp.s
 
 # Help Target
 help:
@@ -161,10 +161,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... video"
-	@echo "... video.o"
-	@echo "... video.i"
-	@echo "... video.s"
+	@echo "... homework1"
+	@echo "... homework1.o"
+	@echo "... homework1.i"
+	@echo "... homework1.s"
 .PHONY : help
 
 
