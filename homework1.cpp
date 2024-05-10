@@ -29,7 +29,7 @@ void drawMoments(vector<Point> contours)
 
     circle(img, Point2d(cX, cY), 1, Scalar(0, 255, 0), 2, 8);
     putText(img, "center", Point2d(cX - 20, cY - 20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 255, 0), 1, 8);
-    cout << cX << " " << cY << endl;
+    // cout << cX << " " << cY << endl;
 }
 
 void getContours(Mat imgDil, Mat img)
@@ -58,16 +58,15 @@ void getContours(Mat imgDil, Mat img)
 
             drawMoments(contours[i]);
 
-            cout << conPoly[i].size() << endl;
+            // cout << conPoly[i].size() << endl;
 
             boundRect[i] = boundingRect(conPoly[i]);
             rectangle(img, boundRect[i].tl(), boundRect[i].br(), Scalar(0, 255, 0), 5);
 
             int objCor = (int)conPoly[i].size();
 
-            if(objCor == 3) {
+            if(objCor == 3) 
                 objectType = "Tri";
-            }
             else if(objCor == 4) {
                 // objectType = "Rect";
                 float aspRatio = (float)boundRect[i].width / (float)boundRect[i].height;
@@ -76,9 +75,8 @@ void getContours(Mat imgDil, Mat img)
                 else
                     objectType = "Rectangle";
             }
-            else {
+            else 
                 objectType = "Circle";
-            }
             putText(img, objectType, {boundRect[i].x, boundRect[i].y - 5}, FONT_HERSHEY_DUPLEX, 0.75, Scalar(0, 69, 255), 2);
         }
     }
@@ -117,9 +115,52 @@ void getColor()
     imgRed = red_res;
 }
 
+void markColor()
+{
+    vector<vector<Point>> contoursRed;
+    vector<Vec4i> hierarchyRed;
+    findContours(red_mask, contoursRed, hierarchyRed, RETR_EXTERNAL, CHAIN_APPROX_NONE);
+    for(int i = 0; i < contoursRed.size(); i ++)
+    {
+        vector<vector<Point>> conPoly(contoursRed.size());
+        vector<Rect> boundRect(contoursRed.size());
+        if (contoursRed[i].size() > 0) {
+            boundRect[i] = boundingRect(contoursRed[i]);
+            putText(img, "Red", {boundRect[i].x - 60, boundRect[i].y + 50}, FONT_HERSHEY_DUPLEX, 0.75, Scalar(0, 0, 0), 2);
+        }
+    }
+
+    vector<vector<Point>> contoursBlue;
+    vector<Vec4i> hierarchyBlue;
+    findContours(blue_mask, contoursBlue, hierarchyBlue, RETR_EXTERNAL, CHAIN_APPROX_NONE);
+    for(int i = 0; i < contoursBlue.size(); i ++)
+    {
+        vector<vector<Point>> conPoly(contoursBlue.size());
+        vector<Rect> boundRect(contoursBlue.size());
+        if (contoursBlue[i].size() > 0) {
+            boundRect[i] = boundingRect(contoursBlue[i]);
+            putText(img, "Blue", {boundRect[i].x - 60, boundRect[i].y + 50}, FONT_HERSHEY_DUPLEX, 0.75, Scalar(0, 0, 0), 2);
+        }
+    }
+
+    vector<vector<Point>> contoursGreen;
+    vector<Vec4i> hierarchyGreen;
+    findContours(green_mask, contoursGreen, hierarchyGreen, RETR_EXTERNAL, CHAIN_APPROX_NONE);
+    for(int i = 0; i < contoursGreen.size(); i ++)
+    {
+        vector<vector<Point>> conPoly(contoursGreen.size());
+        vector<Rect> boundRect(contoursGreen.size());
+        if (contoursGreen[i].size() > 0) {
+            boundRect[i] = boundingRect(contoursGreen[i]);
+            putText(img, "Green", {boundRect[i].x - 60, boundRect[i].y + 50}, FONT_HERSHEY_DUPLEX, 0.75, Scalar(0, 0, 0), 2);
+        }
+    }
+}
+
+
 int main()
 {
-    string path = "../image/color.jpg";
+    string path = "../image/shapes.png";
     imgOrigin = imread(path, IMREAD_COLOR);
     img = imread(path, IMREAD_COLOR);
 
@@ -137,10 +178,12 @@ int main()
 
     getColor();
 
-    int hmin = 0, smin = 0, vmin = 0;
+    markColor();
+
+    int hmin = 1, smin = 1, vmin = 1;
     int hmax = 179, smax= 255, vmax = 255;
     
-    namedWindow("Trackbars", (640, 200));
+    namedWindow("Trackbars", (320, 200));
     createTrackbar("Hue Min", "Trackbars", &hmin, 179);
     createTrackbar("Hue Max", "Trackbars", &hmax, 179);
     createTrackbar("Sat Min", "Trackbars", &smin, 255);
@@ -148,6 +191,7 @@ int main()
     createTrackbar("Val Min", "Trackbars", &vmin, 255);
     createTrackbar("Val Max", "Trackbars", &vmax, 255);
 
+    namedWindow("Image", WINDOW_NORMAL);
     while(1)
     {
         Scalar lower(hmin, smin, vmin);
@@ -155,16 +199,19 @@ int main()
         inRange(imgHSV, lower, upper, imgMask);
 
         imshow("Orginal Image", imgOrigin);
-        imshow("Image HSV", imgHSV);
+        // imshow("Image HSV", imgHSV);
         imshow("Image Mask", imgMask);
-        imshow("Image", img);
         imshow("Red Image", binaryR);
         imshow("Blue Image", binaryB);
 
         imshow("res Image", res);
+        // imshow("red Mask Image", red_mask);
         imshow("Blue Image", imgBlue);
         imshow("Green Image", imgGreen);
         imshow("Red Image", imgRed);
+
+        imshow("Image", img);
+        resizeWindow("Image", 1000, 1000);
 
         waitKey(1);
     }
