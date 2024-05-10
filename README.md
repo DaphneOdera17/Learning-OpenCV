@@ -1,7 +1,14 @@
-# Learning-OpenCV
+# Learning OpenCV
 
-How to run?
-Make a new file in the root path, edit CMakeLists.txt, modify the name of the project and "add_executable".
+## 运行方式
+
+```shell
 cd build
-make
-./Your Project Name
+```
+
+找到需要运行的文件名，例如 homework1。键入
+
+```shell
+./homework1
+```
+
