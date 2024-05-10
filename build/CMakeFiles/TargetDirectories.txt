@@ -1,3 +1,0 @@
-/home/birdy/Learning-OpenCV/build/CMakeFiles/homework1.dir
-/home/birdy/Learning-OpenCV/build/CMakeFiles/edit_cache.dir
-/home/birdy/Learning-OpenCV/build/CMakeFiles/rebuild_cache.dir
