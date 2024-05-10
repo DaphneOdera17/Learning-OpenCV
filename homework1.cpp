@@ -3,21 +3,22 @@
 using namespace cv;
 using namespace std;
 
-Mat img, imgOrigin, imgHSV, imgMask;
+Mat img, imgOrigin, imgHSV, imgMask, imgBinary;
 Mat imgGray, imgBlur, imgCanny, imgDil, imgErode; 
 Mat blue_mask, green_mask, red_mask, red_mask_1, red_mask_2, blue_res, green_res, red_res;
-Mat bg, res;
 Mat imgBlue, imgGreen, imgRed;
+Mat bg, res;
 
 void preprocessing()
 {
-    cvtColor(img, imgGray, COLOR_BGR2GRAY);
+    cvtColor(img, imgGray, COLOR_BGR2GRAY); 
+    // threshold(imgGray, imgBinary, 128, 255, THRESH_BINARY); 
     cvtColor(img, imgHSV, COLOR_BGR2HSV);
 
     GaussianBlur(imgGray, imgBlur, Size(3, 3), 3, 0);
     Canny(imgBlur, imgCanny, 25, 75);
     Mat kernel = getStructuringElement(MORPH_RECT, Size(3, 3));
-    dilate(imgCanny, imgDil, kernel);
+    morphologyEx(imgCanny, imgCanny, MORPH_CLOSE, kernel);
 }
 
 void drawMoments(vector<Point> contours)
@@ -29,64 +30,56 @@ void drawMoments(vector<Point> contours)
 
     circle(img, Point2d(cX, cY), 1, Scalar(0, 255, 0), 2, 8);
     putText(img, "center", Point2d(cX - 20, cY - 20), FONT_HERSHEY_SIMPLEX, 0.5, Scalar(0, 255, 0), 1, 8);
-    // cout << cX << " " << cY << endl;
 }
 
-void getContours(Mat imgDil, Mat img)
+void getContours()
 {
     vector<vector<Point>> contours;
     vector<Vec4i> hierarchy;
 
-    findContours(imgDil, contours, hierarchy, RETR_EXTERNAL, CHAIN_APPROX_SIMPLE);
+    findContours(imgCanny, contours, hierarchy, RETR_TREE, CHAIN_APPROX_NONE);
 
-    for(int i = 0; i < contours.size(); i ++)
+    vector<vector<Point>> conPoly(contours.size());
+    vector<Rect> boundRect(contours.size());
+
+    for (size_t i = 0; i < contours.size(); i++)
     {
         int area = contourArea(contours[i]);
-        cout << area << endl;
-
-        vector<vector<Point>> conPoly(contours.size());
-        vector<Rect> boundRect(contours.size());
-        string objectType;
-
-        if(area > 1000) 
+        if (area > 1000)
         {
             float peri = arcLength(contours[i], true);
-
             approxPolyDP(contours[i], conPoly[i], 0.02 * peri, true);
-
-            drawContours(img, conPoly, i, Scalar(255, 0, 255), 2);
-
-            drawMoments(contours[i]);
-
-            // cout << conPoly[i].size() << endl;
-
             boundRect[i] = boundingRect(conPoly[i]);
-            rectangle(img, boundRect[i].tl(), boundRect[i].br(), Scalar(0, 255, 0), 5);
 
             int objCor = (int)conPoly[i].size();
+            string objectType;
 
-            if(objCor == 3) 
-                objectType = "Tri";
-            else if(objCor == 4) {
-                // objectType = "Rect";
+            if (objCor == 3)
+                objectType = "Triangle";
+            else if (objCor == 4)
+            {
                 float aspRatio = (float)boundRect[i].width / (float)boundRect[i].height;
-                if(aspRatio > 0.95 && aspRatio < 1.05)
+                if (aspRatio > 0.95 && aspRatio < 1.05)
                     objectType = "Square";
                 else
                     objectType = "Rectangle";
             }
-            else 
+            else
                 objectType = "Circle";
-            putText(img, objectType, {boundRect[i].x, boundRect[i].y - 5}, FONT_HERSHEY_DUPLEX, 0.75, Scalar(0, 69, 255), 2);
+
+            putText(img, objectType, {boundRect[i].x - 10, boundRect[i].y - 5}, FONT_HERSHEY_DUPLEX, 0.5, Scalar(0, 69, 255), 1);
+            drawContours(img, contours, i, Scalar(255, 0, 255), 3);
+            drawMoments(contours[i]);
         }
     }
 }
+
 
 void getColor()
 {
     Scalar lower_blue = Scalar(100, 50, 50);
     Scalar upper_blue = Scalar(124, 255, 255);
-    
+
     Scalar lower_green = Scalar(35, 50, 50);
     Scalar upper_green = Scalar(77, 255, 255);
 
@@ -157,27 +150,21 @@ void markColor()
     }
 }
 
-
 int main()
 {
-    string path = "../image/shapes.png";
+    string path = "../image/color.jpg";
     imgOrigin = imread(path, IMREAD_COLOR);
     img = imread(path, IMREAD_COLOR);
 
-    vector<Mat> channels;
-    split(img, channels);
-
-    Mat binaryR, binaryG, binaryB;
-    threshold(channels[0], binaryB, 128, 255, THRESH_BINARY);
-    threshold(channels[1], binaryG, 128, 255, THRESH_BINARY);
-    threshold(channels[2], binaryR, 128, 255, THRESH_BINARY);
-
     preprocessing();
 
-    getContours(imgDil, img);
+    double tickStart = (double)getTickCount();
+    getContours();
+    double tickEnd = (double)getTickCount(); 
+    
+    cout << "time: " << (tickEnd - tickStart) / (getTickFrequency()) << "s" << endl;
 
     getColor();
-
     markColor();
 
     int hmin = 1, smin = 1, vmin = 1;
@@ -190,29 +177,23 @@ int main()
     createTrackbar("Sat Max", "Trackbars", &smax, 255);
     createTrackbar("Val Min", "Trackbars", &vmin, 255);
     createTrackbar("Val Max", "Trackbars", &vmax, 255);
-
+    
     namedWindow("Image", WINDOW_NORMAL);
+    imshow("Orginal Image", imgOrigin);
+    imshow("res Image", res);
+    imshow("Blue Image", imgBlue);
+    imshow("Green Image", imgGreen);
+    imshow("Red Image", imgRed);
+    imshow("Image", img);
+    resizeWindow("Image", 1000, 1000);
+
     while(1)
     {
         Scalar lower(hmin, smin, vmin);
         Scalar upper(hmax, smax, vmax);
         inRange(imgHSV, lower, upper, imgMask);
 
-        imshow("Orginal Image", imgOrigin);
-        // imshow("Image HSV", imgHSV);
         imshow("Image Mask", imgMask);
-        imshow("Red Image", binaryR);
-        imshow("Blue Image", binaryB);
-
-        imshow("res Image", res);
-        // imshow("red Mask Image", red_mask);
-        imshow("Blue Image", imgBlue);
-        imshow("Green Image", imgGreen);
-        imshow("Red Image", imgRed);
-
-        imshow("Image", img);
-        resizeWindow("Image", 1000, 1000);
-
         waitKey(1);
     }
 

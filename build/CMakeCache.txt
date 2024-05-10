@@ -303,6 +303,15 @@ homework1_IS_TOP_LEVEL:STATIC=ON
 homework1_SOURCE_DIR:STATIC=/home/birdy/Learning-OpenCV
 
 //Value Computed by CMake
+homework2_BINARY_DIR:STATIC=/home/birdy/Learning-OpenCV/build
+
+//Value Computed by CMake
+homework2_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+homework2_SOURCE_DIR:STATIC=/home/birdy/Learning-OpenCV
+
+//Value Computed by CMake
 saliency_BINARY_DIR:STATIC=/home/birdy/Learning-OpenCV/build
 
 //Value Computed by CMake
